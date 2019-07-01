@@ -1,0 +1,12 @@
+rootProject.name = 't-action'
+
+def tActionInclude(String name) {
+    include name
+    findProject(":$name")?.name = "action-$name"
+}
+
+tActionInclude("core")
+tActionInclude("compiler")
+tActionInclude("runtime")
+
+include 'main-action'
