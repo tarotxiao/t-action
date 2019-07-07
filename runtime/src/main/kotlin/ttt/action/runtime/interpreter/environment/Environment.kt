@@ -1,6 +1,6 @@
 package ttt.action.runtime.interpreter.environment
 
-import ttt.action.compiler.action.property.Variable
+import ttt.action.runtime.interpreter.property.Variable
 
 interface Environment {
     operator fun get(variable: Variable): Any?

@@ -10,7 +10,7 @@ import java.io.PrintStream
 class RunnerTest {
 
     @Test
-    fun compoundHlloWorld() {
+    fun compoundHelloWorld() {
         CompoundAction(
             listOf(
                 object : JvmAction {
@@ -25,6 +25,26 @@ class RunnerTest {
                     }
                 },
                 HelloWorld()
+            )
+        ).toRunner().runMain()
+    }
+
+    @Test
+    fun compoundHelloWorldWithoutOrder() {
+        CompoundAction(
+            listOf(
+                HelloWorld(),
+                object : JvmAction {
+                    fun output(): PrintStream {
+                        return System.err
+                    }
+                },
+                object : JvmAction {
+                    @Named("name")
+                    fun name(): String {
+                        return "ttt"
+                    }
+                }
             )
         ).toRunner().runMain()
     }
